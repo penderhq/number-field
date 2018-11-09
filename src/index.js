@@ -1,9 +1,34 @@
-import React, {Component} from 'react'
+import React from 'react'
+import NumberInput from './NumberInput'
+import NumberLabel from './NumberLabel'
 
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
+export default class NumberField extends React.Component {
+
+    render() {
+
+        const {contextId, roleId} = this.props
+
+
+        if (contextId === 'recordDetail' && roleId === 'editor') {
+            return (
+                <NumberInput
+                    {...this.props}
+                />
+            )
+        }
+
+        if (contextId === 'recordDetail' && roleId === 'readOnly') {
+            return (
+                <NumberLabel
+                    {...this.props}
+                />
+            )
+        }
+
+        return (
+            <div>
+                Not supported
+            </div>
+        )
+    }
 }
