@@ -69,9 +69,11 @@ class Demo extends Component {
                         id={'fld1'}
                         contextId={'recordDetail'}
                         roleId={'editor'}
-                        numberFormat={'decimal'}
-                        allowNegativeNumbers={false}
-                        precision={2}
+                        options={{
+                            numberFormat: 'decimal',
+                            allowNegativeNumber: false,
+                            precision: 2
+                        }}
                         value={32.25}
                         onChange={log('onChange')}
                     />
@@ -88,6 +90,11 @@ class Demo extends Component {
                         id={'fld1'}
                         contextId={'recordDetail'}
                         roleId={'readOnly'}
+                        options={{
+                            numberFormat: 'decimal',
+                            allowNegativeNumber: false,
+                            precision: 2
+                        }}
                         value={32.25}
                         onChange={log('onChange')}
                     />

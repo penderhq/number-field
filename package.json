@@ -1,5 +1,5 @@
 {
-  "name": "number-field",
+  "name": "@cmds/number-field",
   "version": "0.1.0",
   "description": "Used for entering a number.",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "deploy": "cd demo/dist && surge -d cmds-number-field",
+    "deploy": "cd demo/dist && surge -d cmds-number-field.surge.sh",
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
@@ -23,7 +23,8 @@
   "dependencies": {
     "emotion": "^9.2.12",
     "lodash": "^4.17.11",
-    "numeral": "^2.0.6"
+    "numeral": "^2.0.6",
+    "prop-types": "^15.6.2"
   },
   "peerDependencies": {
     "react": "16.x"
