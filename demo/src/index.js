@@ -53,6 +53,33 @@ class Demo extends Component {
             <h2>Context based</h2>
             <p>The behaviour of the component changes based on the context in which it is rendered.</p>
             <h3>
+                RecordGalleryCard context
+            </h3>
+            <p>Used for displaying the number field in a record gallery card.</p>
+            <h4>
+                Read only role
+            </h4>
+            <Viewport>
+                <div
+                    className={css`
+                        width: 240px;
+                        height: 22px;
+                    `}
+                >
+                    <NumberField
+                        id={'fld1'}
+                        contextId={'recordGalleryCard'}
+                        roleId={'readOnly'}
+                        options={{
+                            numberFormat: 'decimal',
+                            allowNegativeNumber: false,
+                            precision: 2
+                        }}
+                        value={32.25}
+                    />
+                </div>
+            </Viewport>
+            <h3>
                 RecordDetail context
             </h3>
             <p>Used for displaying the single line text field in a record detail.</p>

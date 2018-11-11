@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import NumberInput from './NumberInput'
-import NumberLabel from './NumberLabel'
+import RecordDetailEditor from './contexts/recordDetail/editor'
+import RecordDetailReadOnly from './contexts/recordDetail/readOnly'
+import RecordGalleryCard from './contexts/recordGalleryCard'
 
 export default class NumberField extends React.Component {
 
@@ -21,7 +22,7 @@ export default class NumberField extends React.Component {
 
         if (contextId === 'recordDetail' && roleId === 'editor') {
             return (
-                <NumberInput
+                <RecordDetailEditor
                     {...this.props}
                 />
             )
@@ -29,7 +30,15 @@ export default class NumberField extends React.Component {
 
         if (contextId === 'recordDetail' && roleId === 'readOnly') {
             return (
-                <NumberLabel
+                <RecordDetailReadOnly
+                    {...this.props}
+                />
+            )
+        }
+
+        if (contextId === 'recordGalleryCard' && roleId === 'readOnly') {
+            return (
+                <RecordGalleryCard
                     {...this.props}
                 />
             )
