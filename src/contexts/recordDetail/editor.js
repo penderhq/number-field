@@ -19,14 +19,14 @@ export default class NumberInput extends React.Component {
 
         let format = '0'
 
-        if (this.props.numberFormat === 'decimal') {
-            format = '0.' + times(this.props.precision, constant(0)).join('')
+        if (this.props.options.numberFormatId === 'decimal') {
+            format = '0.' + times(parseInt(this.props.options.precisionId, 10), constant(0)).join('')
             number = parseFloat(number)
         } else {
             number = parseInt(number, 10)
         }
 
-        number = this.props.allowNegativeNumbers ? number : Math.max(0, number)
+        number = this.props.options.allowNegativeNumbers ? number : Math.max(0, number)
         return numeral(number).format(format)
     }
 
@@ -49,9 +49,9 @@ export default class NumberInput extends React.Component {
         const b = this.format(prevProps.value)
 
         const valueChanged = a !== b
-        const precisionChanged = this.props.precision !== prevProps.precision
-        const numberFormatChanged = this.props.numberFormat !== prevProps.numberFormat
-        const allowNegativeNumbersChanged = this.props.allowNegativeNumbers !== prevProps.allowNegativeNumbers
+        const precisionChanged = this.props.options.precisionId !== prevProps.options.precisionId
+        const numberFormatChanged = this.props.options.numberFormatId !== prevProps.options.numberFormat
+        const allowNegativeNumbersChanged = this.props.options.allowNegativeNumbers !== prevProps.options.allowNegativeNumbers
 
         if (valueChanged || precisionChanged || numberFormatChanged || allowNegativeNumbersChanged) {
             this.setState({
@@ -61,6 +61,8 @@ export default class NumberInput extends React.Component {
     }
 
     render() {
+
+        console.log('props', parseInt(this.props.options.precisionId, 10))
 
         return (
             <input
@@ -101,7 +103,7 @@ export default class NumberInput extends React.Component {
 
         const allowedCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '.']
 
-        if (this.props.allowNegativeNumbers) {
+        if (this.props.options.allowNegativeNumbers) {
             allowedCharacters.push('-')
         }
 
@@ -123,11 +125,11 @@ export default class NumberInput extends React.Component {
             value
         })
 
-        if (value && this.props.numberFormat === 'integer') {
+        if (value && this.props.options.numberFormatId === 'integer') {
             value = parseInt(value, 10)
         }
 
-        if (value && this.props.numberFormat === 'decimal') {
+        if (value && this.props.options.numberFormatId === 'decimal') {
             value = parseFloat(value)
         }
 

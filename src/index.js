@@ -9,9 +9,9 @@ export default class NumberField extends React.Component {
     static propTypes = {
         value: PropTypes.number,
         options: PropTypes.shape({
-            numberFormat: PropTypes.oneOf(['decimal', 'integer']).isRequired,
+            numberFormatId: PropTypes.oneOf(['decimal', 'integer']).isRequired,
             allowNegativeNumbers: PropTypes.bool.isRequired,
-            precision: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8]).isRequired
+            precisionId: PropTypes.oneOf(['1', '2', '3', '4', '5', '6', '7', '8']).isRequired
         }).isRequired
     }
 

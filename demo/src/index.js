@@ -71,9 +71,9 @@ class Demo extends Component {
                         contextId={'recordGalleryCard'}
                         roleId={'readOnly'}
                         options={{
-                            numberFormat: 'decimal',
-                            allowNegativeNumber: false,
-                            precision: 2
+                            numberFormatId: 'decimal',
+                            allowNegativeNumbers: false,
+                            precisionId: '2'
                         }}
                         value={32.25}
                     />
@@ -97,9 +97,9 @@ class Demo extends Component {
                         contextId={'recordDetail'}
                         roleId={'editor'}
                         options={{
-                            numberFormat: 'decimal',
-                            allowNegativeNumber: false,
-                            precision: 2
+                            numberFormatId: 'decimal',
+                            allowNegativeNumbers: false,
+                            precisionId: '2'
                         }}
                         value={32.25}
                         onChange={log('onChange')}
@@ -118,9 +118,9 @@ class Demo extends Component {
                         contextId={'recordDetail'}
                         roleId={'readOnly'}
                         options={{
-                            numberFormat: 'decimal',
-                            allowNegativeNumber: false,
-                            precision: 2
+                            numberFormatId: 'decimal',
+                            allowNegativeNumbers: false,
+                            precisionId: '2'
                         }}
                         value={32.25}
                         onChange={log('onChange')}
