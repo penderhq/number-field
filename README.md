@@ -4,6 +4,12 @@
 
 Used for entering a number.
 
+## Getting started
+
+```
+npm install @cmds/number-field --save
+```
+
 ### Prop Types
 
 | Property | Type | Required? | Description |
