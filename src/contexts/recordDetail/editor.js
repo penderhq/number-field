@@ -1,71 +1,60 @@
-import ReactDOM from 'react-dom'
 import React from 'react'
-import times from 'lodash/times'
-import numeral from 'numeral'
-import isString from 'lodash/isString'
-import constant from 'lodash/constant'
+import parseNumber from './../../utils/parse-number'
+import formatNumber from './../../utils/format-number'
 import {css} from 'emotion'
 
-export default class NumberInput extends React.Component {
+/**
+ * Outlines
+ * -----------
+ *
+ * componentDidMount
+ *  - set input value to formatted version of number prop
+ *
+ * input.onChange
+ *  - trigger onChange with formatted version of value
+ *
+ * input.onBlur
+ *  - set input value to formatted version of number prop
+ */
+export default class NumberField extends React.Component {
 
     state = {
-        value: null
+        editing: false,
+        number: null,
+        rawNumber: null
     }
 
-    format(number) {
-
-        if (!number) return null
-        if (isString(number) && !number.length) return null
-
-        let format = '0'
-
-        if (this.props.options.numberFormatId === 'decimal') {
-            format = '0.' + times(parseInt(this.props.options.precisionId, 10), constant(0)).join('')
-            number = parseFloat(number)
-        } else {
-            number = parseInt(number, 10)
-        }
-
-        number = this.props.options.allowNegativeNumbers ? number : Math.max(0, number)
-        return numeral(number).format(format)
-    }
-
-    componentWillMount() {
-        this.setState({
-            value: this.format(this.props.value)
+    formatNumber = (input) => {
+        return formatNumber(input, {
+            allowNegativeNumbers: this.props.allowNegativeNumbers,
+            numberFormatId: this.props.numberFormatId,
+            precisionId: this.props.precisionId
         })
     }
 
-    componentDidUpdate(prevProps) {
+    parseNumber = (input) => {
+        return parseNumber(input, {
+            allowNegativeNumbers: this.props.allowNegativeNumbers,
+            numberFormatId: this.props.numberFormatId,
+            precisionId: this.props.precisionId
+        })
+    }
 
-        if (this.props.value && !prevProps.value) {
-            this.setState({
-                value: ''
-            })
-            return
-        }
+    componentDidMount() {
 
-        const a = this.format(this.props.value)
-        const b = this.format(prevProps.value)
-
-        const valueChanged = a !== b
-        const precisionChanged = this.props.options.precisionId !== prevProps.options.precisionId
-        const numberFormatChanged = this.props.options.numberFormatId !== prevProps.options.numberFormat
-        const allowNegativeNumbersChanged = this.props.options.allowNegativeNumbers !== prevProps.options.allowNegativeNumbers
-
-        if (valueChanged || precisionChanged || numberFormatChanged || allowNegativeNumbersChanged) {
-            this.setState({
-                value: a
-            })
-        }
+        this.setState({
+            number: this.formatNumber(this.props.number)
+        })
     }
 
     render() {
 
-        console.log('props', parseInt(this.props.options.precisionId, 10))
+        const {number} = this.state
 
         return (
             <input
+                data-context-id={this.props.contextId}
+                data-role-id={this.props.roleId}
                 type="text"
                 className={css`
                     padding: 16px 20px;
@@ -82,60 +71,38 @@ export default class NumberInput extends React.Component {
                         outline: 0;
                     }
                 `}
-                value={this.state.value || ''}
+                value={number || ''}
                 onChange={this.handleChange}
+                onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
             />
         )
     }
 
-
-    handleKeyPress = (e) => {
-
-        if (e.nativeEvent && e.nativeEvent.code && e.nativeEvent.code === 'Enter') {
-            ReactDOM.findDOMNode(this).blur()
-        }
-    }
-
-    handleChange = (e) => {
-
-        const {inputType, data} = e.nativeEvent
-
-        const allowedCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '.']
-
-        if (this.props.options.allowNegativeNumbers) {
-            allowedCharacters.push('-')
-        }
-
-        // Only allow numerical input
-        if (inputType === 'insertText' && allowedCharacters.includes(data) === false) {
-            return
-        }
+    handleFocus = () => {
 
         this.setState({
-            value: e.target.value
+            editing: true
         })
     }
 
     handleBlur = () => {
 
-        let value = this.format(this.state.value)
+        this.setState({
+            editing: false,
+            number: this.formatNumber(this.parseNumber(this.state.number))
+        })
+    }
+
+    handleChange = (e) => {
 
         this.setState({
-            value
+            number: e.target.value
         })
-
-        if (value && this.props.options.numberFormatId === 'integer') {
-            value = parseInt(value, 10)
-        }
-
-        if (value && this.props.options.numberFormatId === 'decimal') {
-            value = parseFloat(value)
-        }
 
         this.props.onChange({
             id: this.props.id,
-            value
+            number: this.parseNumber(e.target.value)
         })
     }
 }

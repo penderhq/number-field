@@ -1,6 +1,6 @@
 {
   "name": "@cmds/number-field",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Used for entering a number.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -23,7 +23,6 @@
   "dependencies": {
     "emotion": "^9.2.12",
     "lodash": "^4.17.11",
-    "numeral": "^2.0.6",
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {

@@ -7,18 +7,16 @@ import RecordGalleryCard from './contexts/recordGalleryCard'
 export default class NumberField extends React.Component {
 
     static propTypes = {
-        value: PropTypes.number,
-        options: PropTypes.shape({
-            numberFormatId: PropTypes.oneOf(['decimal', 'integer']).isRequired,
-            allowNegativeNumbers: PropTypes.bool.isRequired,
-            precisionId: PropTypes.oneOf(['1', '2', '3', '4', '5', '6', '7', '8'])
-        }).isRequired
+        id: PropTypes.string.isRequired,
+        number: PropTypes.number,
+        numberFormatId: PropTypes.oneOf(['decimal', 'integer']).isRequired,
+        allowNegativeNumbers: PropTypes.bool.isRequired,
+        precisionId: PropTypes.oneOf(['1', '2', '3', '4', '5', '6', '7', '8'])
     }
 
     render() {
 
         const {contextId, roleId} = this.props
-
 
         if (contextId === 'recordDetail' && roleId === 'editor') {
             return (
