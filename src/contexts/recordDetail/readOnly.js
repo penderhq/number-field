@@ -47,6 +47,7 @@ export default class NumberField extends React.Component {
                             cursor: pointer;
                             white-space: pre-wrap;
                             word-wrap: break-word;
+                            max-width: 100%;
                         `}
                     >
                         {formatNumber(this.props.number, {

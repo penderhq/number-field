@@ -20,8 +20,7 @@ export default class NumberField extends React.Component {
 
     state = {
         editing: false,
-        number: null,
-        rawNumber: null
+        number: null
     }
 
     formatNumber = (input) => {

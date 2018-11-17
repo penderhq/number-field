@@ -1,7 +1,8 @@
 import React from 'react'
 import {css} from 'emotion'
+import formatNumber from "../../utils/format-number";
 
-export default class NumberLabel extends React.Component {
+export default class NumberField extends React.Component {
 
     render() {
 
@@ -29,6 +30,7 @@ export default class NumberLabel extends React.Component {
                 <div
                     className={css`
                         position: relative;
+                        max-width: 100%;
                     `}
                 >
                     <div
@@ -43,7 +45,11 @@ export default class NumberLabel extends React.Component {
                             line-height: 1.5;
                         `}
                     >
-                        {this.props.value}
+                        {formatNumber(this.props.number, {
+                            allowNegativeNumbers: this.props.allowNegativeNumbers,
+                            precisionId: this.props.precisionId,
+                            numberFormatId: this.props.numberFormatId
+                        })}
                     </div>
                 </div>
             </div>

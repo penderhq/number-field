@@ -140,6 +140,32 @@ class Demo extends Component {
                     />
                 </div>
             </Viewport>
+            <h3>
+                RecordListItem context
+            </h3>
+            <p>Used for displaying the number field in a record list item.</p>
+            <h4>
+                Read only role
+            </h4>
+            <Viewport>
+                <div
+                    className={css`
+                        width: 240px;
+                        height: 24px;
+                        background-color: #fff;
+                    `}
+                >
+                    <NumberField
+                        id={'fld1'}
+                        contextId={'recordListItem'}
+                        roleId={'readOnly'}
+                        numberFormatId={'decimal'}
+                        allowNegativeNumbers={false}
+                        precisionId={'2'}
+                        number={32.25}
+                    />
+                </div>
+            </Viewport>
         </div>
     }
 }
