@@ -9,6 +9,7 @@ export default class NumberField extends React.Component {
         return (
             <NumberInput
                 className={css`
+                    -webkit-appearance: none;
                     background-color: rgba(0, 0, 0, 0.05);
                     border: 2px solid transparent;
                     border-radius: 3px;

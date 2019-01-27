@@ -1,6 +1,6 @@
 {
   "name": "@cmds/number-field",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Used for entering a number.",
   "main": "lib/index.js",
   "module": "es/index.js",
