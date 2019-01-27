@@ -1,107 +1,41 @@
 import React from 'react'
-import parseNumber from './../../utils/parse-number'
-import formatNumber from './../../utils/format-number'
+import NumberInput from '@cmds/number-input'
 import {css} from 'emotion'
 
-/**
- * Outlines
- * -----------
- *
- * componentDidMount
- *  - set input value to formatted version of number prop
- *
- * input.onChange
- *  - trigger onChange with formatted version of value
- *
- * input.onBlur
- *  - set input value to formatted version of number prop
- */
 export default class NumberField extends React.Component {
-
-    state = {
-        editing: false,
-        number: null
-    }
-
-    formatNumber = (input) => {
-        return formatNumber(input, {
-            allowNegativeNumbers: this.props.allowNegativeNumbers,
-            numberFormatId: this.props.numberFormatId,
-            precisionId: this.props.precisionId
-        })
-    }
-
-    parseNumber = (input) => {
-        return parseNumber(input, {
-            allowNegativeNumbers: this.props.allowNegativeNumbers,
-            numberFormatId: this.props.numberFormatId,
-            precisionId: this.props.precisionId
-        })
-    }
-
-    componentDidMount() {
-
-        this.setState({
-            number: this.formatNumber(this.props.number)
-        })
-    }
 
     render() {
 
-        const {number} = this.state
-
         return (
-            <input
-                data-context-id={this.props.contextId}
-                data-role-id={this.props.roleId}
-                type="text"
+            <NumberInput
                 className={css`
-                    padding: 16px 20px;
+                    background-color: rgba(0, 0, 0, 0.05);
+                    border: 2px solid transparent;
+                    border-radius: 3px;
+                    padding: 6px;
                     width: 100%;
-                    background: #fafafa;
-                    border: 1px solid #ced4da;
-                    box-shadow: none;
-                    border-radius: 4px;
-                    font-size: 16px;
-                    -webkit-appearance: none;
+                    max-width: 220px;
                     &:focus {
-                        background-color: #fff;
-                        border-color: #000;
-                        outline: 0;
+                        outline: none;
+                        border-color: rgba(0, 0, 0, 0.25);
                     }
                 `}
-                value={number || ''}
+                value={this.props.number}
+                precision={parseInt(this.props.precisionId, 10)}
+                format={this.props.numberFormatId}
+                allowNegative={this.props.allowNegativeNumbers}
                 onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
             />
         )
     }
 
-    handleFocus = () => {
+    handleChange = ({value}) => {
 
-        this.setState({
-            editing: true
-        })
-    }
-
-    handleBlur = () => {
-
-        this.setState({
-            editing: false,
-            number: this.formatNumber(this.parseNumber(this.state.number))
-        })
-    }
-
-    handleChange = (e) => {
-
-        this.setState({
-            number: e.target.value
-        })
-
-        this.props.onChange({
-            id: this.props.id,
-            number: this.parseNumber(e.target.value)
-        })
+        if (this.props.onChange) {
+            this.props.onChange({
+                id: this.props.id,
+                number: value
+            })
+        }
     }
 }

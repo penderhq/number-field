@@ -1,10 +1,17 @@
 import React from 'react'
 import {css} from 'emotion'
-import formatNumber from '../../utils/format-number'
+import formatNumber from '@cmds/number-input/es/utils/formatNumber'
 
 export default class NumberField extends React.Component {
 
     render() {
+
+        const {
+            allowNegativeNumbers,
+            precisionId,
+            numberFormatId
+        } = this.props
+
 
         return (
             <div
@@ -35,9 +42,9 @@ export default class NumberField extends React.Component {
                     `}
                 >
                     {formatNumber(this.props.number, {
-                        allowNegativeNumbers: this.props.allowNegativeNumbers,
-                        precisionId: this.props.precisionId,
-                        numberFormatId: this.props.numberFormatId
+                        allowNegative: allowNegativeNumbers,
+                        precision: parseInt(precisionId, 10),
+                        format: numberFormatId
                     })}
                 </div>
             </div>
