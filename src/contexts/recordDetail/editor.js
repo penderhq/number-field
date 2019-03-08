@@ -9,16 +9,27 @@ export default class NumberField extends React.Component {
         return (
             <NumberInput
                 className={css`
+                    -moz-appearance: none;
                     -webkit-appearance: none;
-                    background-color: rgba(0, 0, 0, 0.05);
-                    border: 2px solid transparent;
+                    -webkit-transition: border-color .15s ease-in-out;
+                    appearance: none;
+                    background-color: #fff;
+                    border: 1px solid #d9d9d9;
                     border-radius: 3px;
-                    padding: 6px;
-                    width: 100%;
-                    max-width: 220px;
+                    color: #191919;
+                    display: block;
+                    font-size: 16px;
+                    height: 38px;
+                    line-height: 1.42857;
+                    padding: 5px 15px;
+                    transition: border-color .15s ease-in-out;
+                    width: 280px;
+                    max-width: 100%;
                     &:focus {
-                        outline: none;
-                        border-color: rgba(0, 0, 0, 0.25);
+                        -webkit-transition-duration: 0s;
+                        border-color: #07f;
+                        outline: 0;
+                        transition-duration: 0s;
                     }
                 `}
                 value={this.props.number}

@@ -41,9 +41,6 @@ class Demo extends Component {
             </pre>
             <Context contextId={'recordDetail'} roleId={'editor'}/>
             <div
-                className={css`
-                        width: 250px;
-                    `}
             >
                 <NumberField
                     id={'fld1'}
