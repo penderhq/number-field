@@ -1,6 +1,6 @@
 import React from 'react'
 import {css} from 'emotion'
-import formatNumber from '@cmds/number-input/es/utils/formatNumber'
+import formatNumber from '@cmds/number-input/lib/utils/formatNumber'
 
 export default class NumberField extends React.Component {
 
