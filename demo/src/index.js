@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {css, injectGlobal} from 'emotion'
 import NumberField from '../../src'
+import {Canvas, Heading, Paragraph, Box} from '@cmds/demo-utils'
 
 injectGlobal`
     * {
@@ -9,6 +10,7 @@ injectGlobal`
     }
     body {
         font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+        margin: 0;
     }
 `
 
@@ -30,18 +32,14 @@ class Demo extends Component {
     }
 
     render() {
-        return <div>
-            <h1>NumberField Demo</h1>
-            <p>Used for entering a number.</p>
-            <h2>
-                State
-            </h2>
-            <pre>
-                {JSON.stringify(this.state, null, 2)}
-            </pre>
-            <Context contextId={'recordDetail'} roleId={'editor'}/>
-            <div
-            >
+        return <Canvas>
+            <Heading>
+                Record Detail Context
+            </Heading>
+            <Paragraph>
+                With editor role
+            </Paragraph>
+            <Box>
                 <NumberField
                     id={'fld1'}
                     contextId={'recordDetail'}
@@ -57,13 +55,11 @@ class Demo extends Component {
                         })
                     }}
                 />
-            </div>
-            <Context contextId={'recordDetail'} roleId={'readOnly'}/>
-            <div
-                className={css`
-                        width: 600px;
-                    `}
-            >
+            </Box>
+            <Paragraph>
+                With read only role
+            </Paragraph>
+            <Box>
                 <NumberField
                     id={'fld1'}
                     contextId={'recordDetail'}
@@ -73,14 +69,22 @@ class Demo extends Component {
                     precisionId={'2'}
                     number={this.state.number}
                 />
-            </div>
-            <Context contextId={'recordGalleryCard'} roleId={'readOnly'}/>
-            <div
-                className={css`
-                        width: 240px;
-                        height: 22px;
-                    `}
-            >
+            </Box>
+            <Paragraph>
+                State
+            </Paragraph>
+            <Box>
+                 <pre>
+                {JSON.stringify(this.state, null, 2)}
+            </pre>
+            </Box>
+            <Heading>
+                Record Gallery Card Context
+            </Heading>
+            <Paragraph>
+                With read only role
+            </Paragraph>
+            <Box>
                 <NumberField
                     id={'fld1'}
                     contextId={'recordGalleryCard'}
@@ -90,14 +94,14 @@ class Demo extends Component {
                     precisionId={'2'}
                     number={this.state.number}
                 />
-            </div>
-            <Context contextId={'recordListItem'} roleId={'readOnly'}/>
-            <div
-                className={css`
-                        width: 240px;
-                        height: 24px;
-                    `}
-            >
+            </Box>
+            <Heading>
+                Record List Item Context
+            </Heading>
+            <Paragraph>
+                With read only role
+            </Paragraph>
+            <Box>
                 <NumberField
                     id={'fld1'}
                     contextId={'recordListItem'}
@@ -107,8 +111,8 @@ class Demo extends Component {
                     precisionId={'2'}
                     number={this.state.number}
                 />
-            </div>
-        </div>
+            </Box>
+        </Canvas>
     }
 }
 
