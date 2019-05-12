@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {css, injectGlobal} from 'emotion'
 import NumberField from '../../src'
-import {Canvas, Heading, Paragraph, Box} from '@cmds/demo-utils'
+import {Canvas, Heading, Paragraph, Box} from '@pndr/demo-utils'
 
 injectGlobal`
     * {
@@ -13,17 +13,6 @@ injectGlobal`
         margin: 0;
     }
 `
-
-const Context = ({contextId, roleId}) => (
-    <div
-        className={css`
-            margin-top: 32px;
-            margin-bottom: 24px;
-        `}
-    >
-        <strong>Context:</strong> {contextId}, <strong>Role:</strong> {roleId}
-    </div>
-)
 
 class Demo extends Component {
 
@@ -78,6 +67,34 @@ class Demo extends Component {
                 {JSON.stringify(this.state, null, 2)}
             </pre>
             </Box>
+            <Paragraph>
+                Empty with editor role
+            </Paragraph>
+            <Box>
+                <NumberField
+                    id={'fld1'}
+                    contextId={'recordDetail'}
+                    roleId={'editor'}
+                    numberFormatId={'decimal'}
+                    allowNegativeNumbers={true}
+                    precisionId={'2'}
+                    number={null}
+                />
+            </Box>
+            <Paragraph>
+                Empty with read only role
+            </Paragraph>
+            <Box>
+                <NumberField
+                    id={'fld1'}
+                    contextId={'recordDetail'}
+                    roleId={'readOnly'}
+                    numberFormatId={'decimal'}
+                    allowNegativeNumbers={false}
+                    precisionId={'2'}
+                    number={null}
+                />
+            </Box>
             <Heading>
                 Record Gallery Card Context
             </Heading>
@@ -95,6 +112,20 @@ class Demo extends Component {
                     number={this.state.number}
                 />
             </Box>
+            <Paragraph>
+                Empty with read only role
+            </Paragraph>
+            <Box>
+                <NumberField
+                    id={'fld1'}
+                    contextId={'recordGalleryCard'}
+                    roleId={'readOnly'}
+                    numberFormatId={'decimal'}
+                    allowNegativeNumbers={false}
+                    precisionId={'2'}
+                    number={null}
+                />
+            </Box>
             <Heading>
                 Record List Item Context
             </Heading>
@@ -110,6 +141,20 @@ class Demo extends Component {
                     allowNegativeNumbers={false}
                     precisionId={'2'}
                     number={this.state.number}
+                />
+            </Box>
+            <Paragraph>
+                Empty with read only role
+            </Paragraph>
+            <Box>
+                <NumberField
+                    id={'fld1'}
+                    contextId={'recordListItem'}
+                    roleId={'readOnly'}
+                    numberFormatId={'decimal'}
+                    allowNegativeNumbers={false}
+                    precisionId={'2'}
+                    number={null}
                 />
             </Box>
         </Canvas>

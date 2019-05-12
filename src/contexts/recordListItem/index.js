@@ -1,6 +1,8 @@
 import React from 'react'
-import {css} from 'emotion'
-import formatNumber from '@cmds/number-input/lib/utils/formatNumber'
+import { css } from 'emotion'
+import formatNumber from '@pndr/number-input/lib/utils/formatNumber'
+import defaultEmptyRenderer from '../../defaultEmptyRenderer'
+import isNil from 'lodash/isNil'
 
 export default class NumberField extends React.Component {
 
@@ -12,6 +14,9 @@ export default class NumberField extends React.Component {
             numberFormatId
         } = this.props
 
+        if (isNil(this.props.number)) {
+            return defaultEmptyRenderer()
+        }
 
         return (
             <div
@@ -24,8 +29,6 @@ export default class NumberField extends React.Component {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
-                    line-height: 1.5;
-                    font-size: 13px;
                     height: 100%;
                 `}
             >
@@ -34,7 +37,6 @@ export default class NumberField extends React.Component {
                         flex: 1 1 auto;
                         min-width: 0;
                         min-height: 0;
-                        line-height: 1.5;
                         max-width: 100%;
                         overflow: hidden;
                         text-overflow: ellipsis;

@@ -1,6 +1,6 @@
 import React from 'react'
-import NumberInput from '@cmds/number-input'
-import {css} from 'emotion'
+import NumberInput from '@pndr/number-input'
+import { css } from 'emotion'
 
 export default class NumberField extends React.Component {
 
@@ -41,7 +41,7 @@ export default class NumberField extends React.Component {
         )
     }
 
-    handleChange = ({value}) => {
+    handleChange = ({ value }) => {
 
         if (this.props.onChange) {
             this.props.onChange({
